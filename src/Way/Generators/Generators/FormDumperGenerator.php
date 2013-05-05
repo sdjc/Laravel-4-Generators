@@ -139,6 +139,9 @@ class FormDumperGenerator {
      */
     public function getTableInfo($model)
     {
+        $tclass = new $model();
+        $table=$tclass->getTable();
+        if (is_null($tclass->getTable()))
         $table = Pluralizer::plural($model);
 
         return \DB::getDoctrineSchemaManager()->listTableDetails($table)->getColumns();
